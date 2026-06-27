@@ -1,0 +1,311 @@
+<!-- ============================================================
+     FILE 1: index.html — MeetStore User Panel (FIXED)
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>MeetStore — Fresh Meat Delivered</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{colors:{brand:{50:'#FEF3E2',100:'#FCE4BC',200:'#F9C878',300:'#F5A832',400:'#F28C10',500:'#D97706',600:'#B45309',700:'#92400E',800:'#78350F',900:'#451A03'},surface:{50:'#FAFAF9',100:'#F5F5F4',200:'#E7E5E4',300:'#D6D3D1',700:'#44403C',800:'#292524',900:'#1C1917',950:'#0F0E0D'}},fontFamily:{display:['Playfair Display','serif'],body:['DM Sans','sans-serif']}}}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;overflow-x:hidden;transition:background .3s,color .3s}.dark body,.dark{background:#0F0E0D;color:#F5F5F4}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#D97706;border-radius:3px}.page{display:none;opacity:0;transform:translateY(12px);transition:opacity .35s,transform .35s}.page.active{display:block;opacity:1;transform:translateY(0)}.hero-gradient{background:linear-gradient(135deg,#78350F 0%,#D97706 50%,#F28C10 100%)}.card-hover{transition:transform .25s,box-shadow .25s}.card-hover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.12)}.dark .card-hover:hover{box-shadow:0 12px 32px rgba(0,0,0,.4)}.btn-primary{background:linear-gradient(135deg,#D97706,#F28C10);color:#fff;border:none;border-radius:10px;padding:10px 24px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}.btn-primary:hover{transform:scale(1.03);box-shadow:0 4px 16px rgba(217,119,6,.4)}.btn-primary:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}.btn-outline{border:2px solid #D97706;color:#D97706;background:transparent;border-radius:10px;padding:8px 22px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit}.btn-outline:hover{background:#D97706;color:#fff}.input-field{width:100%;padding:12px 16px;border:2px solid #E7E5E4;border-radius:10px;font-size:15px;font-family:inherit;transition:border-color .2s;background:transparent;color:inherit}.input-field:focus{outline:none;border-color:#D97706}.dark .input-field{border-color:#44403C;background:#1C1917}.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}.badge-green{background:#D1FAE5;color:#065F46}.badge-red{background:#FEE2E2;color:#991B1B}.badge-yellow{background:#FEF3C7;color:#92400E}.toast-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px}.toast{padding:14px 20px;border-radius:10px;color:#fff;font-weight:500;font-size:14px;animation:slideIn .3s ease;min-width:260px;box-shadow:0 8px 24px rgba(0,0,0,.2)}.toast-success{background:#059669}.toast-error{background:#DC2626}.toast-info{background:#D97706}@keyframes slideIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}.fade-up{animation:fadeUp .5s ease forwards}.fade-up-d1{animation-delay:.1s;opacity:0}.status-step{position:relative;display:flex;flex-direction:column;align-items:center;flex:1}.status-step .dot{width:32px;height:32px;border-radius:50%;background:#E7E5E4;display:flex;align-items:center;justify-content:center;font-size:13px;color:#78716C;transition:all .3s;z-index:1}.status-step.active .dot{background:#D97706;color:#fff;box-shadow:0 0 0 4px rgba(217,119,6,.2)}.status-step.done .dot{background:#059669;color:#fff}.status-step .line{position:absolute;top:16px;left:calc(50% + 16px);right:calc(-50% + 16px);height:3px;background:#E7E5E4}.status-step.done .line{background:#059669}.status-step.active .line{background:linear-gradient(90deg,#059669,#D97706)}.dark .status-step .dot{background:#44403C;color:#78716C}.dark .status-step .line{background:#44403C}.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}.modal-overlay.show{display:flex}.modal-content{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:24px;animation:slideUp .3s ease}.dark .modal-content{background:#1C1917}@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}.cat-card img{transition:transform .4s}.cat-card:hover img{transform:scale(1.08)}.qty-btn{width:32px;height:32px;border-radius:8px;border:2px solid #E7E5E4;background:transparent;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit;color:inherit}.qty-btn:hover{border-color:#D97706;color:#D97706}.dark .qty-btn{border-color:#44403C}@media(min-width:640px){.modal-content{border-radius:20px;margin:auto;max-height:80vh}}.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:25px;border:2px solid #E7E5E4;cursor:pointer;font-size:13px;font-weight:500;transition:all .2s;user-select:none}.chip:hover{border-color:#D97706}.chip.selected{background:#D97706;color:#fff;border-color:#D97706}.dark .chip{border-color:#44403C}.nav-link{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:500;color:#78716C;transition:color .2s;cursor:pointer;padding:4px 0}.nav-link.active{color:#D97706}.nav-link i{font-size:20px}
+</style>
+</head>
+<body class="bg-surface-50 text-surface-900 dark:bg-surface-950 dark:text-surface-100 font-body">
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- AUTH PAGE -->
+<div id="authPage" class="page active min-h-screen flex items-center justify-center p-4" style="background:linear-gradient(160deg,#0F0E0D 0%,#1C1917 40%,#451A03 100%)">
+  <div class="w-full max-w-md">
+    <div class="text-center mb-8 fade-up"><div class="inline-flex items-center gap-3 mb-4"><div class="w-12 h-12 rounded-2xl bg-brand-500 flex items-center justify-center"><i class="fas fa-drumstick-bite text-white text-xl"></i></div><span class="font-display text-3xl font-bold text-white">MeetStore</span></div><p class="text-surface-300 text-sm">Fresh meat delivered to your doorstep</p></div>
+    <div class="bg-white dark:bg-surface-900 rounded-2xl p-6 shadow-2xl fade-up fade-up-d1">
+      <div class="flex mb-6 bg-surface-100 dark:bg-surface-800 rounded-xl p-1"><button onclick="switchAuthTab('login')" id="loginTab" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all bg-brand-500 text-white">Login</button><button onclick="switchAuthTab('register')" id="registerTab" class="flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all text-surface-500">Register</button></div>
+      <div id="loginForm">
+        <div class="space-y-4 mb-5"><div><label class="block text-sm font-medium mb-1.5">Email</label><input type="email" id="loginEmail" class="input-field" placeholder="your@email.com"></div><div><label class="block text-sm font-medium mb-1.5">Password</label><div class="relative"><input type="password" id="loginPassword" class="input-field pr-10" placeholder="Enter password"><button onclick="togglePwd('loginPassword',this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-400"><i class="fas fa-eye"></i></button></div></div></div>
+        <button onclick="loginUser()" class="btn-primary w-full py-3 text-base">Login</button>
+        <div class="relative my-5"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-surface-200 dark:border-surface-700"></div></div><div class="relative flex justify-center"><span class="bg-white dark:bg-surface-900 px-3 text-xs text-surface-400">OR CONTINUE WITH</span></div></div>
+        <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 py-3 border-2 border-surface-200 dark:border-surface-700 rounded-xl font-semibold text-sm hover:bg-surface-50 dark:hover:bg-surface-800 transition-all"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18"> Google</button>
+        
+      </div>
+      <div id="registerForm" style="display:none">
+        <div class="space-y-4 mb-5"><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium mb-1.5">Full Name</label><input type="text" id="regName" class="input-field" placeholder="John Doe"></div><div><label class="block text-sm font-medium mb-1.5">Phone</label><input type="tel" id="regPhone" class="input-field" placeholder="+91 9876543210"></div></div><div><label class="block text-sm font-medium mb-1.5">Email</label><input type="email" id="regEmail" class="input-field" placeholder="your@email.com"></div><div><label class="block text-sm font-medium mb-1.5">Password</label><div class="relative"><input type="password" id="regPassword" class="input-field pr-10" placeholder="Min 6 characters"><button onclick="togglePwd('regPassword',this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-surface-400"><i class="fas fa-eye"></i></button></div></div></div>
+        <button onclick="registerUser()" class="btn-primary w-full py-3 text-base">Create Account</button>
+        <div class="relative my-5"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-surface-200 dark:border-surface-700"></div></div><div class="relative flex justify-center"><span class="bg-white dark:bg-surface-900 px-3 text-xs text-surface-400">OR CONTINUE WITH</span></div></div>
+        <button onclick="googleLogin()" class="w-full flex items-center justify-center gap-3 py-3 border-2 border-surface-200 dark:border-surface-700 rounded-xl font-semibold text-sm hover:bg-surface-50 dark:hover:bg-surface-800 transition-all"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" width="18"> Google</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- APP -->
+<div id="appContainer" style="display:none" class="pb-20">
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-surface-900/90 backdrop-blur-lg border-b border-surface-200 dark:border-surface-800"><div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3"><div class="flex items-center gap-2.5"><div class="w-9 h-9 rounded-xl bg-brand-500 flex items-center justify-center"><i class="fas fa-drumstick-bite text-white text-sm"></i></div><span class="font-display text-xl font-bold">MeetStore</span></div><div class="flex items-center gap-3"><button onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center"><i class="fas fa-moon dark:hidden text-sm"></i><i class="fas fa-sun hidden dark:inline text-sm text-brand-400"></i></button><button onclick="showPage('wishlist')" class="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center relative"><i class="fas fa-heart text-sm text-surface-500"></i><span id="wishCount" class="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" style="display:none">0</span></button><button onclick="showPage('cart')" class="w-9 h-9 rounded-xl bg-surface-100 dark:bg-surface-800 flex items-center justify-center relative"><i class="fas fa-shopping-bag text-sm text-surface-500"></i><span id="cartCount" class="absolute -top-1 -right-1 bg-brand-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center" style="display:none">0</span></button><button onclick="showPage('profile')" class="w-9 h-9 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center"><i class="fas fa-user text-sm text-brand-600"></i></button></div></div></header>
+
+  <div id="homePage" class="page active max-w-6xl mx-auto px-4 py-5">
+    <div class="hero-gradient rounded-2xl p-6 md:p-10 mb-8 relative overflow-hidden"><div class="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div><div class="absolute bottom-0 left-1/2 w-32 h-32 bg-white/5 rounded-full translate-y-1/2"></div><div class="relative z-10 max-w-lg"><p class="text-white/80 text-sm font-medium mb-2 tracking-wide uppercase">Fresh & Premium Quality</p><h1 class="font-display text-3xl md:text-4xl font-bold text-white leading-tight mb-3">Farm Fresh Meat<br>At Your Door</h1><p class="text-white/75 text-sm mb-5 leading-relaxed">Handpicked cuts, hygienically processed and delivered fresh within hours.</p><button onclick="document.getElementById('catGrid').scrollIntoView({behavior:'smooth'})" class="bg-white text-brand-700 font-semibold px-6 py-3 rounded-xl hover:bg-white/90 transition-all text-sm">Order Now <i class="fas fa-arrow-right ml-2"></i></button></div></div>
+    <div class="relative mb-6"><i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-surface-400"></i><input type="text" id="searchInput" oninput="handleSearch(this.value)" class="input-field pl-11" placeholder="Search for mutton, chicken, fish..."></div>
+    <h2 class="font-display text-xl font-bold mb-4">Shop by Category</h2>
+    <div id="catGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8"></div>
+    <div id="searchResults" style="display:none" class="mb-8"><h2 class="font-display text-xl font-bold mb-4">Search Results</h2><div id="searchGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div></div>
+    <div class="mb-8"><h2 class="font-display text-xl font-bold mb-4">Popular Right Now</h2><div id="popularGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div></div>
+  </div>
+
+  <div id="categoryPage" class="page max-w-6xl mx-auto px-4 py-5">
+    <button onclick="showPage('home')" class="flex items-center gap-2 text-sm text-surface-500 hover:text-brand-500 mb-4"><i class="fas fa-arrow-left"></i> Back</button>
+    <div class="flex items-center gap-3 mb-5"><div id="catIcon" class="w-12 h-12 rounded-xl bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center text-2xl"></div><div><h1 id="catTitle" class="font-display text-2xl font-bold"></h1><p id="catCount" class="text-sm text-surface-500"></p></div></div>
+    <div class="flex gap-2 mb-5 overflow-x-auto pb-2"><button onclick="filterCatParts('all')" class="chip selected" data-filter="all">All</button><button onclick="filterCatParts('available')" class="chip" data-filter="available"><span class="w-2 h-2 rounded-full bg-green-500"></span> Available</button><button onclick="filterCatParts('out_of_stock')" class="chip" data-filter="out_of_stock"><span class="w-2 h-2 rounded-full bg-red-500"></span> Out of Stock</button><button onclick="filterCatParts('available_soon')" class="chip" data-filter="available_soon"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> Coming Soon</button></div>
+    <div id="partsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+
+  <div id="productPage" class="page max-w-2xl mx-auto px-4 py-5"><button onclick="goBackFromProduct()" class="flex items-center gap-2 text-sm text-surface-500 hover:text-brand-500 mb-4"><i class="fas fa-arrow-left"></i> Back</button><div id="productDetail"></div></div>
+
+  <div id="cartPage" class="page max-w-2xl mx-auto px-4 py-5"><h1 class="font-display text-2xl font-bold mb-5">Shopping Cart</h1><div id="cartItems"></div><div id="cartSummary" style="display:none" class="mt-6 bg-surface-100 dark:bg-surface-800 rounded-2xl p-5"><div class="space-y-2 mb-4 text-sm"><div class="flex justify-between"><span class="text-surface-500">Subtotal</span><span id="cartSubtotal" class="font-semibold"></span></div><div class="flex justify-between"><span class="text-surface-500">Delivery</span><span class="font-semibold text-green-600">FREE</span></div><div class="border-t border-surface-200 dark:border-surface-700 pt-2 flex justify-between text-base"><span class="font-bold">Total</span><span id="cartTotal" class="font-bold text-brand-500"></span></div></div><button onclick="showPage('checkout')" id="cartCheckoutBtn" class="btn-primary w-full py-3">Proceed to Checkout</button></div></div>
+
+  <div id="checkoutPage" class="page max-w-2xl mx-auto px-4 py-5">
+    <button onclick="showPage('cart')" class="flex items-center gap-2 text-sm text-surface-500 hover:text-brand-500 mb-4"><i class="fas fa-arrow-left"></i> Back to Cart</button>
+    <h1 class="font-display text-2xl font-bold mb-5">Checkout</h1>
+    <div class="space-y-5">
+      <div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800"><h3 class="font-semibold mb-4">Delivery Address</h3><div class="space-y-3"><div><label class="block text-sm font-medium mb-1">Full Name</label><input type="text" id="checkName" class="input-field" placeholder="John Doe"></div><div><label class="block text-sm font-medium mb-1">Mobile</label><input type="tel" id="checkPhone" class="input-field" placeholder="+91 9876543210"></div><div><label class="block text-sm font-medium mb-1">Address</label><textarea id="checkAddress" class="input-field" rows="2" placeholder="House no, Street, Area"></textarea></div><div class="grid grid-cols-2 gap-3"><div><label class="block text-sm font-medium mb-1">Landmark</label><input type="text" id="checkLandmark" class="input-field" placeholder="Near temple"></div><div><label class="block text-sm font-medium mb-1">Notes</label><input type="text" id="checkNotes" class="input-field" placeholder="Ring the bell"></div></div></div></div>
+      <div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800"><h3 class="font-semibold mb-4">Payment</h3><div class="space-y-3"><label class="flex items-center gap-3 p-3 rounded-xl border-2 border-brand-500 bg-brand-50 dark:bg-brand-900/20 cursor-pointer pay-label"><input type="radio" name="payment" value="cod" checked class="accent-brand-500"><i class="fas fa-money-bill-wave text-brand-500"></i><span class="text-sm font-medium">Cash on Delivery</span></label><label class="flex items-center gap-3 p-3 rounded-xl border-2 border-surface-200 dark:border-surface-700 cursor-pointer hover:border-brand-500 transition-colors pay-label" onclick="selectPayment(this)"><input type="radio" name="payment" value="upi" class="accent-brand-500"><i class="fas fa-mobile-alt text-purple-500"></i><span class="text-sm font-medium">UPI Payment</span></label><label class="flex items-center gap-3 p-3 rounded-xl border-2 border-surface-200 dark:border-surface-700 cursor-pointer hover:border-brand-500 transition-colors pay-label" onclick="selectPayment(this)"><input type="radio" name="payment" value="online" class="accent-brand-500"><i class="fas fa-credit-card text-blue-500"></i><span class="text-sm font-medium">Online Payment</span></label></div></div>
+      <div class="bg-surface-100 dark:bg-surface-800 rounded-2xl p-5"><div class="space-y-2 mb-4 text-sm"><div class="flex justify-between"><span class="text-surface-500">Subtotal</span><span id="checkSubtotal" class="font-semibold"></span></div><div class="flex justify-between"><span class="text-surface-500">Delivery</span><span class="font-semibold text-green-600">FREE</span></div><div class="border-t border-surface-200 dark:border-surface-700 pt-2 flex justify-between text-base"><span class="font-bold">Total</span><span id="checkTotal" class="font-bold text-brand-500"></span></div></div><button onclick="placeOrder()" id="placeOrderBtn" class="btn-primary w-full py-3">Place Order</button></div>
+    </div>
+  </div>
+
+  <div id="trackingPage" class="page max-w-2xl mx-auto px-4 py-5"><button onclick="showPage('orders')" class="flex items-center gap-2 text-sm text-surface-500 hover:text-brand-500 mb-4"><i class="fas fa-arrow-left"></i> Back</button><h1 class="font-display text-2xl font-bold mb-5">Order Tracking</h1><div id="trackingContent"></div></div>
+  <div id="ordersPage" class="page max-w-2xl mx-auto px-4 py-5"><h1 class="font-display text-2xl font-bold mb-5">My Orders</h1><div id="ordersList"></div></div>
+  <div id="wishlistPage" class="page max-w-2xl mx-auto px-4 py-5"><h1 class="font-display text-2xl font-bold mb-5">My Wishlist</h1><div id="wishlistGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div><div id="wishlistEmpty" style="display:none" class="text-center py-16"><i class="fas fa-heart text-4xl text-surface-300 dark:text-surface-700 mb-4"></i><p class="text-surface-500">Your wishlist is empty</p></div></div>
+
+  <div id="profilePage" class="page max-w-2xl mx-auto px-4 py-5">
+    <h1 class="font-display text-2xl font-bold mb-5">My Profile</h1>
+    <div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800 mb-5"><div class="flex items-center gap-4 mb-5"><div class="w-16 h-16 rounded-full bg-brand-100 dark:bg-brand-900/30 flex items-center justify-center"><i class="fas fa-user text-2xl text-brand-500"></i></div><div><h3 id="profileName" class="font-semibold text-lg"></h3><p id="profileEmail" class="text-sm text-surface-500"></p></div></div><div class="space-y-3"><div><label class="block text-xs font-medium text-surface-400 mb-1">Phone</label><p id="profilePhone" class="text-sm font-medium"></p></div><div><label class="block text-xs font-medium text-surface-400 mb-1">Address</label><p id="profileAddress" class="text-sm font-medium"></p></div></div></div>
+    <div class="space-y-3">
+      <button onclick="showPage('orders')" class="w-full flex items-center gap-3 p-4 bg-white dark:bg-surface-900 rounded-xl border border-surface-200 dark:border-surface-800 hover:border-brand-500 transition-colors"><i class="fas fa-box text-brand-500 w-5"></i><span class="text-sm font-medium">My Orders</span><i class="fas fa-chevron-right ml-auto text-xs text-surface-400"></i></button>
+      <button onclick="showPage('wishlist')" class="w-full flex items-center gap-3 p-4 bg-white dark:bg-surface-900 rounded-xl border border-surface-200 dark:border-surface-800 hover:border-brand-500 transition-colors"><i class="fas fa-heart text-red-500 w-5"></i><span class="text-sm font-medium">Wishlist</span><i class="fas fa-chevron-right ml-auto text-xs text-surface-400"></i></button>
+      <button onclick="toggleDarkMode()" class="w-full flex items-center gap-3 p-4 bg-white dark:bg-surface-900 rounded-xl border border-surface-200 dark:border-surface-800 hover:border-brand-500 transition-colors"><i class="fas fa-moon text-purple-500 w-5"></i><span class="text-sm font-medium">Dark Mode</span><div class="ml-auto w-10 h-6 bg-surface-300 dark:bg-brand-500 rounded-full relative transition-colors"><div class="absolute top-1 left-1 dark:left-5 w-4 h-4 bg-white rounded-full transition-all"></div></div></button>
+      <button onclick="logoutUser()" class="w-full flex items-center gap-3 p-4 bg-red-50 dark:bg-red-900/20 rounded-xl border border-red-200 dark:border-red-900/40 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"><i class="fas fa-sign-out-alt text-red-500 w-5"></i><span class="text-sm font-medium text-red-600">Logout</span></button>
+    </div>
+  </div>
+
+  <nav class="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-surface-900/95 backdrop-blur-lg border-t border-surface-200 dark:border-surface-800 z-50"><div class="max-w-6xl mx-auto flex justify-around py-2"><div class="nav-link active" data-page="home" onclick="showPage('home')"><i class="fas fa-home"></i><span>Home</span></div><div class="nav-link" data-page="orders" onclick="showPage('orders')"><i class="fas fa-box"></i><span>Orders</span></div><div class="nav-link" data-page="cart" onclick="showPage('cart')"><i class="fas fa-shopping-bag"></i><span>Cart</span></div><div class="nav-link" data-page="wishlist" onclick="showPage('wishlist')"><i class="fas fa-heart"></i><span>Wishlist</span></div><div class="nav-link" data-page="profile" onclick="showPage('profile')"><i class="fas fa-user"></i><span>Profile</span></div></div></nav>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyCMKYKiOEnChcHQKpTfcPfx294CBfaoH0Q",authDomain:"meat-store-d2a8f.firebaseapp.com",databaseURL:"https://meat-store-d2a8f-default-rtdb.firebaseio.com",projectId:"meat-store-d2a8f",storageBucket:"meat-store-d2a8f.firebasestorage.app",messagingSenderId:"130190378280",appId:"1:130190378280:web:2a87a81d7f770dd70f7c1d",measurementId:"G-X0Q76NLTP0"};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth(),db=firebase.database();
+
+const LOCKED_ADMIN_EMAIL='admin@gmail.com';
+let currentUser=null,cart=[],wishlist=[],categories={},parts={},orders={};
+let currentPage='home',currentCatId=null,currentPartId=null,currentFilter='all',confirmationResult=null;
+
+const catMeta={mutton:{icon:'fa-drumstick-bite',img:'https://picsum.photos/seed/muttonmeat/400/300',color:'#B45309'},chicken:{icon:'fa-drumstick-bite',img:'https://picsum.photos/seed/chickenmeat/400/300',color:'#DC2626'},fish:{icon:'fa-fish',img:'https://picsum.photos/seed/freshfish/400/300',color:'#0891B2'},prawn:{icon:'fa-shrimp',img:'https://picsum.photos/seed/prawnsea/400/300',color:'#EA580C'},turkey:{icon:'fa-feather',img:'https://picsum.photos/seed/turkeybird/400/300',color:'#65A30D'},duck:{icon:'fa-crow',img:'https://picsum.photos/seed/duckmeat/400/300',color:'#7C3AED'}};
+const cutTypes={mutton:['Biryani Cut','Curry Cut','Soup Cut','Boneless Cut'],chicken:['Biryani Cut','Curry Cut','Gravy Cut','Boneless Cut','BBQ Cut','Fry Cut'],fish:['Curry Cut','Fry Cut','Fillet Cut'],prawn:['Whole','Cleaned','Fried Ready'],turkey:['Biryani Cut','Curry Cut','BBQ Cut','Boneless Cut'],duck:['Curry Cut','Biryani Cut','Whole']};
+const customOpts=['Small Pieces','Medium Pieces','Large Pieces','Skin Removed','Fat Removed','Cleaned','Extra Cleaning'];
+
+function toast(m,t='info'){const c=document.getElementById('toastContainer'),e=document.createElement('div');e.className=`toast toast-${t}`;e.innerHTML=`<i class="fas fa-${t==='success'?'check-circle':t==='error'?'exclamation-circle':'info-circle'} mr-2"></i>${m}`;c.appendChild(e);setTimeout(()=>{e.style.opacity='0';e.style.transform='translateX(60px)';setTimeout(()=>e.remove(),300)},3000)}
+function togglePwd(id,btn){const i=document.getElementById(id),ic=btn.querySelector('i');if(i.type==='password'){i.type='text';ic.className='fas fa-eye-slash'}else{i.type='password';ic.className='fas fa-eye'}}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function openModal(id){document.getElementById(id).classList.add('show')}
+function fmtP(p){return'₹'+Number(p).toLocaleString('en-IN')}
+function statusBadge(s){if(s==='available')return'<span class="badge badge-green">Available</span>';if(s==='out_of_stock')return'<span class="badge badge-red">Out of Stock</span>';if(s==='available_soon')return'<span class="badge badge-yellow">Available Soon</span>';return'<span class="badge badge-green">'+s+'</span>'}
+function getDisc(p,d){if(!d||d>=p)return 0;return Math.round(((p-d)/p)*100)}
+function getStock(p){return(p.stock!==undefined&&p.stock!==null)?p.stock:null}
+function toggleDarkMode(){document.documentElement.classList.toggle('dark');localStorage.setItem('darkMode',document.documentElement.classList.contains('dark'))}
+if(localStorage.getItem('darkMode')==='true')document.documentElement.classList.add('dark');
+function isBlockedEmail(u){return u&&u.email&&u.email.toLowerCase().trim()===LOCKED_ADMIN_EMAIL.toLowerCase()}
+
+function switchAuthTab(t){document.getElementById('loginForm').style.display=t==='login'?'block':'none';document.getElementById('registerForm').style.display=t==='register'?'block':'none';document.getElementById('loginTab').className='flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all '+(t==='login'?'bg-brand-500 text-white':'text-surface-500');document.getElementById('registerTab').className='flex-1 py-2.5 rounded-lg text-sm font-semibold transition-all '+(t==='register'?'bg-brand-500 text-white':'text-surface-500')}
+
+async function loginUser(){const e=document.getElementById('loginEmail').value.trim(),p=document.getElementById('loginPassword').value;if(!e||!p)return toast('Fill in all fields','error');if(e.toLowerCase()===LOCKED_ADMIN_EMAIL)return toast('This email is reserved for admin. Please use a different account.','error');try{await auth.signInWithEmailAndPassword(e,p);toast('Login successful!','success')}catch(x){toast(x.message,'error')}}
+async function registerUser(){const n=document.getElementById('regName').value.trim(),ph=document.getElementById('regPhone').value.trim(),e=document.getElementById('regEmail').value.trim(),p=document.getElementById('regPassword').value;if(!n||!e||!p)return toast('Fill required fields','error');if(e.toLowerCase()===LOCKED_ADMIN_EMAIL)return toast('This email is reserved for admin.','error');if(p.length<6)return toast('Password min 6 chars','error');try{const c=await auth.createUserWithEmailAndPassword(e,p);await db.ref('users/'+c.user.uid).set({name:n,phone:ph,email:e,address:'',role:'user',createdAt:Date.now()});toast('Account created!','success')}catch(x){toast(x.message,'error')}}
+async function googleLogin(){try{const cred=await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());if(isBlockedEmail(cred.user))return toast('This email is reserved for admin.','error');const snap=await db.ref('users/'+cred.user.uid).once('value');if(!snap.exists())await db.ref('users/'+cred.user.uid).set({name:cred.user.displayName||'User',phone:cred.user.phoneNumber||'',email:cred.user.email||'',address:'',role:'user',createdAt:Date.now()});toast('Login successful!','success')}catch(x){toast(x.message,'error')}}
+function phoneLogin(){openModal('phoneModal');if(!window.recaptchaVerifier)window.recaptchaVerifier=new firebase.auth.RecaptchaVerifier('recaptchaContainer',{size:'normal',callback:()=>{}});window.recaptchaVerifier.render()}
+async function sendOTP(){const ph=document.getElementById('phoneInput').value.trim();if(!ph)return toast('Enter phone number','error');try{confirmationResult=await auth.signInWithPhoneNumber(ph,window.recaptchaVerifier);document.getElementById('phoneStep1').style.display='none';document.getElementById('phoneStep2').style.display='block';toast('OTP sent!','success')}catch(x){toast(x.message,'error')}}
+async function verifyOTP(){const c=document.getElementById('otpInput').value.trim();if(!c)return toast('Enter OTP','error');try{const cred=await confirmationResult.confirm(c);if(isBlockedEmail(cred.user)){closeModal('phoneModal');return toast('This email is reserved for admin.','error')}const snap=await db.ref('users/'+cred.user.uid).once('value');if(!snap.exists())await db.ref('users/'+cred.user.uid).set({name:'User',phone:cred.user.phoneNumber||'',email:'',address:'',role:'user',createdAt:Date.now()});closeModal('phoneModal');toast('Phone login successful!','success')}catch(x){toast('Invalid OTP','error')}}
+function logoutUser(){auth.signOut();toast('Logged out','info')}
+
+/* ============================================================
+   CRITICAL FIX: NO signOut inside onAuthStateChanged!
+   Only control UI visibility. signOut is for explicit actions only.
+   ============================================================ */
+function logoutUser(){auth.signOut();toast('Logged out','info')}
+
+/* ============================================================
+   FIX #1: Set persistence to LOCAL before any auth listener.
+   LOCAL = stored in localStorage, survives tab close, reboot, etc.
+   SESSION (default) = sessionStorage, easily lost → causes auto-logout.
+   ============================================================ */
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(err=>{
+  console.warn('Persistence set failed (non-critical):', err.message);
+});
+
+/* ============================================================
+   FIX #2: Guard against transient null auth states.
+   Firebase can briefly fire onAuthStateChanged(null) during
+   silent token refresh — we debounce to avoid flicker logout.
+   ============================================================ */
+let _authNullTimer = null;
+let _confirmedUser = null;
+
+auth.onAuthStateChanged(async u => {
+  /* Debounce: if we had a user and now get null, wait 3s before
+     actually logging out. A real logout is instant (signOut clears
+     everything), but a token-refresh blip resolves within ~1s. */
+  if (u === null && _confirmedUser !== null) {
+    if (_authNullTimer) clearTimeout(_authNullTimer);
+    _authNullTimer = setTimeout(() => {
+      /* Re-check: if still null after 3s, it's a real logout */
+      if (!auth.currentUser) {
+        _confirmedUser = null;
+        currentUser = null;
+        document.getElementById('authPage').style.display = 'flex';
+        document.getElementById('appContainer').style.display = 'none';
+      }
+    }, 3000);
+    return; // Don't act on the transient null yet
+  }
+
+  /* Clear any pending null-timer since we have a user now */
+  if (_authNullTimer) { clearTimeout(_authNullTimer); _authNullTimer = null; }
+
+  currentUser = u;
+
+  if (u) {
+    /* If blocked email, show login page — do NOT sign out */
+    if (isBlockedEmail(u)) {
+      document.getElementById('authPage').style.display = 'flex';
+      document.getElementById('appContainer').style.display = 'none';
+      return;
+    }
+    _confirmedUser = u;
+    document.getElementById('authPage').style.display = 'none';
+    document.getElementById('appContainer').style.display = 'block';
+    try {
+      const s = await db.ref('users/' + u.uid).once('value');
+      if (!s.exists()) {
+        await db.ref('users/' + u.uid).set({
+          name: u.displayName || 'User',
+          phone: u.phoneNumber || '',
+          email: u.email || '',
+          address: '',
+          role: 'user',
+          createdAt: Date.now()
+        });
+      }
+      loadData();
+    } catch (err) {
+      console.error('User data load error:', err);
+      /* Don't logout on DB error — user is still authenticated */
+      loadData(); // listeners will retry
+    }
+  } else {
+    /* Genuine logout (no previous user to debounce against) */
+    if (_confirmedUser === null) {
+      document.getElementById('authPage').style.display = 'flex';
+      document.getElementById('appContainer').style.display = 'none';
+    }
+  }
+});
+
+/* ============================================================
+   FIX #3: Listen for token refresh failures and proactively
+   re-authenticate when the token can't be silently refreshed.
+   ============================================================ */
+auth.onIdTokenChanged(async user => {
+  if (!user) return;
+
+  try {
+    await user.getIdToken();
+  } catch (err) {
+    console.error('Token refresh warning:', err);
+
+    if (err.code === 'auth/network-request-failed') {
+      return;
+    }
+
+    if (err.code === 'auth/user-token-expired') {
+      toast('Session expired. Please login again.', 'error');
+      auth.signOut();
+      _confirmedUser = null;
+    }
+  }
+});
+
+/* ============================================================
+   FIX #4: Re-verify auth when coming back online.
+   Some browsers drop sessionStorage when regaining connectivity.
+   ============================================================ */
+window.addEventListener('online', () => {
+  if (!_confirmedUser && !auth.currentUser) return;
+  auth.currentUser?.getIdToken(true).catch(err => {
+    if (err.code === 'auth/user-token-expired') {
+      toast('Session expired. Please login again.', 'error');
+      auth.signOut();
+      _confirmedUser = null;
+    }
+  });
+});
+
+async function loadData(){
+  db.ref('categories').on('value',s=>{categories=s.val()||{};renderHome()});
+  db.ref('parts').on('value',s=>{parts=s.val()||{};renderHome();renderCategoryPage();renderProductPage();renderCart()});
+  db.ref('users/'+currentUser.uid+'/cart').on('value',s=>{cart=s.val()?Object.entries(s.val()).map(([k,v])=>({id:k,...v})):[];updateCartBadge();renderCart()});
+  db.ref('users/'+currentUser.uid+'/wishlist').on('value',s=>{wishlist=s.val()?Object.keys(s.val()):[];updateWishBadge();renderWishlist()});
+  db.ref('orders').orderByChild('userId').equalTo(currentUser.uid).on('value',s=>{orders=s.val()||{};renderOrders()});
+  loadProfile();
+}
+function loadProfile(){db.ref('users/'+currentUser.uid).once('value').then(s=>{const d=s.val()||{};document.getElementById('profileName').textContent=d.name||'User';document.getElementById('profileEmail').textContent=d.email||'';document.getElementById('profilePhone').textContent=d.phone||'Not set';document.getElementById('profileAddress').textContent=d.address||'Not set';document.getElementById('checkName').value=d.name||'';document.getElementById('checkPhone').value=d.phone||'';document.getElementById('checkAddress').value=d.address||''})}
+function showPage(p){currentPage=p;document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));const el=document.getElementById(p+'Page');if(el)el.classList.add('active');document.querySelectorAll('.nav-link').forEach(n=>n.classList.toggle('active',n.dataset.page===p));window.scrollTo({top:0,behavior:'smooth'});if(p==='cart')renderCart();if(p==='orders')renderOrders();if(p==='wishlist')renderWishlist();if(p==='profile')loadProfile();if(p==='checkout')renderCheckout()}
+
+function renderHome(){const g=document.getElementById('catGrid'),pg=document.getElementById('popularGrid');let h='';Object.entries(categories).forEach(([id,c])=>{const m=catMeta[id]||catMeta.mutton,pc=Object.values(parts).filter(p=>p.categoryId===id).length;h+=`<div class="cat-card card-hover bg-white dark:bg-surface-900 rounded-2xl overflow-hidden border border-surface-200 dark:border-surface-800 cursor-pointer" onclick="openCategory('${id}')"><div class="h-32 overflow-hidden bg-surface-100 dark:bg-surface-800"><img src="${c.image||m.img}" alt="${c.name}" class="w-full h-full object-cover" onerror="this.src='${m.img}'"></div><div class="p-3.5"><h3 class="font-semibold text-sm">${c.name}</h3><p class="text-xs text-surface-500 mt-0.5">${pc} items</p></div></div>`});g.innerHTML=h||'<p class="text-surface-500 col-span-full text-center py-8">No categories yet</p>';const ap=Object.entries(parts).filter(([_,p])=>p.status==='available').slice(0,6);let ph='';ap.forEach(([id,p])=>{const c=categories[p.categoryId]||{};ph+=partCard(id,p,c.name)});pg.innerHTML=ph||'<p class="text-surface-500 col-span-full text-center py-8">No items available</p>'}
+
+function partCard(id,p,catName){const m=catMeta[p.categoryId]||catMeta.mutton,d=getDisc(p.price,p.discountPrice),stk=getStock(p);let low='';if(stk!==null&&p.status==='available'&&stk<=2&&stk>0)low=`<p class="text-[10px] text-orange-500 font-semibold mt-0.5"><i class="fas fa-fire mr-0.5"></i>Only ${stk} kg left</p>`;let oos='';if(p.status==='out_of_stock')oos=`<p class="text-[10px] text-red-400 font-semibold mt-0.5"><i class="fas fa-times-circle mr-0.5"></i>Out of Stock</p>`;return`<div class="bg-white dark:bg-surface-900 rounded-2xl overflow-hidden border border-surface-200 dark:border-surface-800 card-hover"><div class="h-36 overflow-hidden bg-surface-100 dark:bg-surface-800 relative cursor-pointer" onclick="openProduct('${id}')"><img src="${p.image||m.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.src='${m.img}'">${d?`<span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-lg">${d}% OFF</span>`:''}<button onclick="event.stopPropagation();toggleWishlist('${id}')" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/90 dark:bg-surface-900/90 flex items-center justify-center shadow"><i class="fa${wishlist.includes(id)?'s':'r'} fa-heart text-sm ${wishlist.includes(id)?'text-red-500':'text-surface-400'}"></i></button></div><div class="p-3.5"><p class="text-[10px] text-brand-500 font-semibold uppercase tracking-wider mb-1">${catName}</p><h3 class="font-semibold text-sm mb-1 cursor-pointer" onclick="openProduct('${id}')">${p.name}</h3><div class="flex items-center gap-2 mb-1">${statusBadge(p.status)}</div>${low}${oos}<div class="flex items-center justify-between mt-2"><div>${p.discountPrice&&p.discountPrice<p.price?`<span class="text-xs text-surface-400 line-through mr-1">${fmtP(p.price)}</span>`:''}<span class="font-bold text-brand-600">${fmtP(p.discountPrice||p.price)}</span><span class="text-[10px] text-surface-400">/kg</span></div>${p.status==='available'?`<button onclick="addToCart('${id}')" class="w-8 h-8 rounded-lg bg-brand-500 text-white flex items-center justify-center hover:bg-brand-600 transition-colors"><i class="fas fa-plus text-xs"></i></button>`:`<button class="w-8 h-8 rounded-lg bg-surface-100 dark:bg-surface-800 text-surface-400 flex items-center justify-center cursor-not-allowed"><i class="fas fa-plus text-xs"></i></button>`}</div></div></div>`}
+
+function handleSearch(q){const sr=document.getElementById('searchResults'),g=document.getElementById('searchGrid');if(!q.trim()){sr.style.display='none';return}const ql=q.toLowerCase(),r=Object.entries(parts).filter(([_,p])=>{const c=categories[p.categoryId]||{};return p.name.toLowerCase().includes(ql)||c.name.toLowerCase().includes(ql)});if(!r.length){sr.style.display='block';g.innerHTML='<p class="text-surface-500 col-span-full text-center py-8">No results found</p>';return}sr.style.display='block';g.innerHTML=r.map(([id,p])=>partCard(id,p,categories[p.categoryId]||{})).join('')}
+
+function openCategory(id){currentCatId=id;currentFilter='all';document.querySelectorAll('[data-filter]').forEach(c=>c.classList.toggle('selected',c.dataset.filter==='all'));showPage('category');renderCategoryPage()}
+function renderCategoryPage(){if(!currentCatId)return;const c=categories[currentCatId];if(!c)return;const m=catMeta[currentCatId]||catMeta.mutton;document.getElementById('catIcon').innerHTML=`<i class="fas ${m.icon}" style="color:${m.color}"></i>`;document.getElementById('catTitle').textContent=c.name;const cp=Object.entries(parts).filter(([_,p])=>p.categoryId===currentCatId),f=currentFilter==='all'?cp:cp.filter(([_,p])=>p.status===currentFilter);document.getElementById('catCount').textContent=f.length+' items';document.getElementById('partsGrid').innerHTML=f.map(([id,p])=>partCard(id,p,c.name)).join('')||'<p class="text-surface-500 col-span-full text-center py-8">No items found</p>'}
+function filterCatParts(f){currentFilter=f;document.querySelectorAll('[data-filter]').forEach(c=>c.classList.toggle('selected',c.dataset.filter===f));renderCategoryPage()}
+
+function openProduct(id){currentPartId=id;showPage('product');renderProductPage()}
+function renderProductPage(){if(!currentPartId||!parts[currentPartId])return;const p=parts[currentPartId],c=categories[p.categoryId]||{},m=catMeta[p.categoryId]||catMeta.mutton,d=getDisc(p.price,p.discountPrice),cuts=cutTypes[p.categoryId]||[],inCart=cart.find(x=>x.partId===currentPartId),isW=wishlist.includes(currentPartId),stk=getStock(p),maxQ=stk!==null?stk:999;let soon='';if(p.status==='available_soon')soon=`<div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-3 text-sm"><i class="fas fa-clock text-yellow-600 mr-2"></i>${p.availableTime?`Available at <strong>${p.availableTime}</strong>`:''}${p.waitingHours?` &bull; Est. wait: <strong>${p.waitingHours} hours</strong>`:''}</div>`;let stockW='';if(p.status==='available'&&stk!==null&&stk<=5)stockW=`<div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-3 text-sm"><i class="fas fa-exclamation-triangle text-orange-500 mr-2"></i>Only <strong>${stk} kg</strong> left!</div>`;let oosW='';if(p.status==='out_of_stock')oosW=`<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-3 text-sm"><i class="fas fa-times-circle text-red-500 mr-2"></i>Currently out of stock.</div>`;document.getElementById('productDetail').innerHTML=`<div class="rounded-2xl overflow-hidden bg-surface-100 dark:bg-surface-800 h-56 md:h-72 mb-5"><img src="${p.image||m.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.src='${m.img}'"></div><div class="flex items-start justify-between mb-2"><div><p class="text-xs text-brand-500 font-semibold uppercase tracking-wider mb-1">${c.name}</p><h1 class="font-display text-2xl font-bold">${p.name}</h1></div><button onclick="toggleWishlist('${currentPartId}')" class="w-10 h-10 rounded-full border-2 ${isW?'border-red-500 bg-red-50 dark:bg-red-900/20':'border-surface-200 dark:border-surface-700'} flex items-center justify-center"><i class="fa${isW?'s':'r'} fa-heart ${isW?'text-red-500':'text-surface-400'}"></i></button></div><div class="mb-3">${statusBadge(p.status)}</div>${p.status==='available'?`<p class="text-xs text-surface-400 mb-3"><i class="fas fa-warehouse mr-1"></i>${stk!==null?stk+' kg in stock':'In stock'}</p>`:''}${soon}${stockW}${oosW}<div class="flex items-baseline gap-3 mb-6">${p.discountPrice&&p.discountPrice<p.price?`<span class="text-lg text-surface-400 line-through">${fmtP(p.price)}</span><span class="bg-red-100 dark:bg-red-900/30 text-red-600 text-xs font-bold px-2 py-0.5 rounded">${d}% OFF</span>`:''}<span class="text-3xl font-bold text-brand-600">${fmtP(p.discountPrice||p.price)}</span><span class="text-sm text-surface-400">per kg</span></div>${cuts.length?`<div class="mb-5"><h3 class="font-semibold mb-2.5">Cut Type</h3><div class="flex flex-wrap gap-2" id="cutChips">${cuts.map((c,i)=>`<div class="chip ${i===0?'selected':''}" onclick="this.classList.toggle('selected')">${c}</div>`).join('')}</div></div>`:''}<div class="mb-5"><h3 class="font-semibold mb-2.5">Customization</h3><div class="flex flex-wrap gap-2" id="customChips">${customOpts.map(c=>`<div class="chip" onclick="this.classList.toggle('selected')">${c}</div>`).join('')}</div></div><div class="mb-6"><h3 class="font-semibold mb-2.5">Quantity</h3><div class="flex items-center gap-4"><div class="flex items-center gap-2"><button class="qty-btn" onclick="adjQty(-0.25)">-</button><input type="number" id="detailQty" value="0.5" min="0.25" max="${maxQ}" step="0.25" class="w-20 text-center input-field py-2 text-sm" oninput="clampQ(this,${maxQ})"><button class="qty-btn" onclick="adjQty(0.25)">+</button></div><span class="text-sm text-surface-500">kg${maxQ<999?' (max '+maxQ+' kg)':''}</span></div></div><div class="flex gap-3 sticky bottom-20 bg-surface-50 dark:bg-surface-950 py-3 -mx-4 px-4"><button onclick="addToCartDetailed()" class="btn-primary flex-1 py-3.5 text-base"><i class="fas fa-shopping-bag mr-2"></i>${inCart?'Update Cart':'Add to Cart'}</button></div>`}
+function clampQ(i,mx){let v=parseFloat(i.value);if(isNaN(v))v=0.25;i.value=Math.min(mx,Math.max(0.25,v))}
+function adjQty(d){const i=document.getElementById('detailQty'),mx=parseFloat(i.max)||999;let v=parseFloat(i.value)||0.5;i.value=Math.min(mx,Math.max(0.25,v+d))}
+function goBackFromProduct(){if(currentCatId)showPage('category');else showPage('home')}
+
+function addToCart(pid){const p=parts[pid];if(!p)return toast('Item not found','error');const stk=getStock(p),avail=stk!==null?stk:999,ex=cart.find(c=>c.partId===pid),cur=ex?ex.qty:0;if(p.status==='available'&&cur+0.5>avail)return toast(`Only ${avail} kg available.`,'error');if(ex)db.ref('users/'+currentUser.uid+'/cart/'+ex.id).update({qty:cur+0.5});else db.ref('users/'+currentUser.uid+'/cart').push({partId:pid,qty:0.5});toast('Added to cart','success')}
+function addToCartDetailed(){const p=parts[currentPartId];if(!p)return;let qty=parseFloat(document.getElementById('detailQty').value)||0.5;const stk=getStock(p),avail=stk!==null?stk:999;if(p.status==='available'&&qty>avail){qty=Math.floor(avail*4)/4;if(qty<0.25)return toast('Not enough stock','error');toast(`Adjusted to ${qty} kg`,'info')}const cutEl=document.querySelector('#cutChips .selected'),cutType=cutEl?cutEl.textContent.trim():'';const customs=[...document.querySelectorAll('#customChips .selected')].map(c=>c.textContent.trim());const ex=cart.find(c=>c.partId===currentPartId);if(ex)db.ref('users/'+currentUser.uid+'/cart/'+ex.id).update({qty,cutType,customizations:customs});else db.ref('users/'+currentUser.uid+'/cart').push({partId:currentPartId,qty,cutType,customizations:customs});toast('Added to cart','success')}
+function updateCartQty(cid,delta){const item=cart.find(c=>c.id===cid);if(!item)return;const p=parts[item.partId],stk=getStock(p),avail=stk!==null?stk:999;let nq=Math.round((item.qty+delta)*100)/100;if(nq<0.25)nq=0.25;if(p.status==='available'&&nq>avail){toast(`Only ${avail} kg available`,'error');return}db.ref('users/'+currentUser.uid+'/cart/'+cid).update({qty:nq})}
+function removeFromCart(cid){db.ref('users/'+currentUser.uid+'/cart/'+cid).remove();toast('Removed from cart','info')}
+function updateCartBadge(){const el=document.getElementById('cartCount'),c=cart.reduce((s,x)=>s+x.qty,0);el.textContent=c>99?'99+':Math.round(c);el.style.display=c>0?'flex':'none'}
+function getCartTotal(){return cart.reduce((s,c)=>{const p=parts[c.partId];if(!p)return s;return s+(p.discountPrice||p.price)*c.qty},0)}
+
+function renderCart(){const con=document.getElementById('cartItems'),sum=document.getElementById('cartSummary');if(!cart.length){con.innerHTML=`<div class="text-center py-16"><i class="fas fa-shopping-bag text-4xl text-surface-300 dark:text-surface-700 mb-4"></i><p class="text-surface-500">Your cart is empty</p><button onclick="showPage('home')" class="btn-outline mt-4 text-sm">Browse Categories</button></div>`;sum.style.display='none';return}let unavail=[],overStock=[];cart.forEach(c=>{const p=parts[c.partId];if(!p)return;const stk=getStock(p),avail=stk!==null?stk:999;if(p.status!=='available')unavail.push({name:p.name,status:p.status});else if(c.qty>avail)overStock.push({name:p.name,requested:c.qty,available:avail})});let warn='';if(unavail.length)warn+=`<div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 mb-4"><p class="text-sm font-semibold text-red-700 dark:text-red-400 mb-2"><i class="fas fa-exclamation-circle mr-1"></i> Unavailable Items</p>${unavail.map(i=>`<p class="text-xs text-red-600 dark:text-red-300">${i.name} — ${i.status.replace(/_/g,' ')}</p>`).join('')}<p class="text-[10px] text-red-400 mt-2">Remove these items before checkout.</p></div>`;if(overStock.length)warn+=`<div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-4 mb-4"><p class="text-sm font-semibold text-orange-700 dark:text-orange-400 mb-2"><i class="fas fa-exclamation-triangle mr-1"></i> Quantity Exceeds Stock</p>${overStock.map(s=>`<p class="text-xs text-orange-600 dark:text-orange-300">${s.name}: ${s.requested} kg requested, ${s.available} kg available</p>`).join('')}</div>`;let h=warn;cart.forEach(c=>{const p=parts[c.partId];if(!p)return;const m=catMeta[p.categoryId]||catMeta.mutton,stk=getStock(p),avail=stk!==null?stk:999,isOver=p.status==='available'&&c.qty>avail,isUnavail=p.status!=='available';h+=`<div class="flex gap-3 bg-white dark:bg-surface-900 rounded-xl p-3 border ${isUnavail?'border-red-300 dark:border-red-700':isOver?'border-orange-300 dark:border-orange-700':'border-surface-200 dark:border-surface-800'} mb-3"><div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-100 dark:bg-surface-800 flex-shrink-0 relative"><img src="${p.image||m.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.src='${m.img}'">${isUnavail?'<div class="absolute inset-0 bg-black/40 flex items-center justify-center"><i class="fas fa-ban text-white text-lg"></i></div>':''}</div><div class="flex-1 min-w-0"><h4 class="font-semibold text-sm truncate">${p.name}</h4>${c.cutType?`<p class="text-[10px] text-brand-500 font-medium">${c.cutType}</p>`:''}${isUnavail?`<p class="text-[10px] text-red-500 font-semibold">${p.status.replace(/_/g,' ')}</p>`:isOver?`<p class="text-[10px] text-orange-500 font-semibold">Exceeds stock (${avail} kg)</p>`:''}<p class="font-bold text-brand-600 text-sm mt-1">${fmtP(p.discountPrice||p.price)} <span class="text-[10px] text-surface-400 font-normal">/kg</span></p><div class="flex items-center justify-between mt-2"><div class="flex items-center gap-1.5">${isUnavail?'':`<button class="qty-btn" style="width:26px;height:26px;font-size:13px" onclick="updateCartQty('${c.id}',-0.25)">-</button><span class="text-sm font-semibold w-12 text-center">${c.qty} kg</span><button class="qty-btn" style="width:26px;height:26px;font-size:13px" onclick="updateCartQty('${c.id}',0.25)">+</button>`}</div><div class="flex items-center gap-3"><span class="text-sm font-bold">${fmtP((p.discountPrice||p.price)*c.qty)}</span><button onclick="removeFromCart('${c.id}')" class="text-red-400 hover:text-red-600 transition-colors"><i class="fas fa-trash-alt text-xs"></i></button></div></div></div></div>`});con.innerHTML=h;const total=getCartTotal();document.getElementById('cartSubtotal').textContent=fmtP(total);document.getElementById('cartTotal').textContent=fmtP(total);sum.style.display='block';const btn=document.getElementById('cartCheckoutBtn'),hasIssues=unavail.length>0||overStock.length>0;btn.disabled=hasIssues;btn.innerHTML=hasIssues?'<i class="fas fa-exclamation-triangle mr-2"></i>Fix Issues Before Checkout':'Proceed to Checkout'}
+
+function selectPayment(l){document.querySelectorAll('.pay-label').forEach(x=>{x.className=x===l?'flex items-center gap-3 p-3 rounded-xl border-2 border-brand-500 bg-brand-50 dark:bg-brand-900/20 cursor-pointer pay-label':'flex items-center gap-3 p-3 rounded-xl border-2 border-surface-200 dark:border-surface-700 cursor-pointer hover:border-brand-500 transition-colors pay-label'})}
+function renderCheckout(){const t=getCartTotal();document.getElementById('checkSubtotal').textContent=fmtP(t);document.getElementById('checkTotal').textContent=fmtP(t)}
+
+async function placeOrder(){if(!cart.length)return toast('Cart is empty','error');for(const c of cart){const p=parts[c.partId];if(!p)return toast('Product no longer exists','error');if(p.status!=='available')return toast(`"${p.name}" is ${p.status.replace(/_/g,' ')} — remove it first`,'error');const stk=getStock(p),avail=stk!==null?stk:999;if(c.qty>avail)return toast(`Only ${avail} kg of "${p.name}" available`,'error')}const name=document.getElementById('checkName').value.trim(),phone=document.getElementById('checkPhone').value.trim(),address=document.getElementById('checkAddress').value.trim(),landmark=document.getElementById('checkLandmark').value.trim(),notes=document.getElementById('checkNotes').value.trim(),payment=document.querySelector('[name="payment"]:checked').value;if(!name||!phone||!address)return toast('Fill in delivery details','error');const btn=document.getElementById('placeOrderBtn');btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin mr-2"></i>Placing Order...';const total=getCartTotal(),items=cart.map(c=>{const p=parts[c.partId];return{partId:c.partId,name:p?.name,qty:c.qty,price:p?.discountPrice||p?.price,cutType:c.cutType||'',customizations:c.customizations||[]}});try{const orderRef=db.ref('orders').push();await orderRef.set({userId:currentUser.uid,items,totalAmount:total,paymentMethod:payment,orderStatus:'confirmed',delivery:{name,phone,address,landmark,notes},createdAt:Date.now()});await Promise.all(cart.map(c=>new Promise(res=>{db.ref('parts/'+c.partId).transaction(cur=>{if(!cur)return null;if(cur.stock===undefined||cur.stock===null)return cur;cur.stock=Math.max(0,cur.stock-c.qty);if(cur.stock<=0&&cur.status==='available')cur.status='out_of_stock';return cur},(err,comm)=>{res()})})));await db.ref('users/'+currentUser.uid+'/cart').remove();await db.ref('users/'+currentUser.uid).update({name,phone,address});toast('Order placed successfully!','success');showPage('orders')}catch(e){console.error(e);toast('Failed to place order.','error')}finally{btn.disabled=false;btn.innerHTML='Place Order'}}
+
+function renderOrders(){const con=document.getElementById('ordersList'),uo=Object.entries(orders).sort((a,b)=>b[1].createdAt-a[1].createdAt);if(!uo.length){con.innerHTML=`<div class="text-center py-16"><i class="fas fa-box-open text-4xl text-surface-300 dark:text-surface-700 mb-4"></i><p class="text-surface-500">No orders yet</p><button onclick="showPage('home')" class="btn-outline mt-4 text-sm">Start Shopping</button></div>`;return}let h='';const sc={confirmed:'text-blue-600 bg-blue-50 dark:bg-blue-900/30',processing:'text-yellow-600 bg-yellow-50 dark:bg-yellow-900/30',packed:'text-purple-600 bg-purple-50 dark:bg-purple-900/30',out_for_delivery:'text-orange-600 bg-orange-50 dark:bg-orange-900/30',delivered:'text-green-600 bg-green-50 dark:bg-green-900/30',rejected:'text-red-600 bg-red-50 dark:bg-red-900/30'};uo.forEach(([id,o])=>{const d=new Date(o.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}),sl=o.orderStatus?o.orderStatus.replace(/_/g,' ').replace(/\b\w/g,l=>l.toUpperCase()):'Unknown';h+=`<div class="bg-white dark:bg-surface-900 rounded-2xl p-4 border border-surface-200 dark:border-surface-800 mb-3 card-hover cursor-pointer" onclick="openTracking('${id}')"><div class="flex items-center justify-between mb-3"><div><p class="text-xs text-surface-400">Order #${id.slice(-8).toUpperCase()}</p><p class="text-xs text-surface-400">${d}</p></div><span class="text-xs font-semibold px-2.5 py-1 rounded-lg ${sc[o.orderStatus]||'text-surface-500 bg-surface-100'}">${sl}</span></div><div class="space-y-1.5 mb-3">${o.items.map(i=>`<div class="flex justify-between text-sm"><span class="text-surface-600 dark:text-surface-400">${i.name} x${i.qty}kg</span><span class="font-medium">${fmtP(i.price*i.qty)}</span></div>`).join('')}</div><div class="flex items-center justify-between pt-3 border-t border-surface-200 dark:border-surface-700"><span class="font-bold">${fmtP(o.totalAmount)}</span><span class="text-xs text-brand-500 font-medium">Track Order <i class="fas fa-chevron-right ml-1"></i></span></div></div>`});con.innerHTML=h}
+
+function openTracking(id){showPage('tracking');const o=orders[id];if(!o)return;const steps=['confirmed','processing','packed','out_for_delivery','delivered'],labels=['Confirmed','Processing','Packed','Out for Delivery','Delivered'],icons=['fa-check','fa-cog','fa-box','fa-truck','fa-flag-checkered'],ci=steps.indexOf(o.orderStatus),rej=o.orderStatus==='rejected';let h=`<div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800 mb-5"><div class="flex items-center justify-between mb-2"><p class="text-sm text-surface-400">Order #${id.slice(-8).toUpperCase()}</p><span class="font-bold">${fmtP(o.totalAmount)}</span></div><p class="text-xs text-surface-400">${new Date(o.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})}</p></div>`;if(rej)h+=`<div class="bg-red-50 dark:bg-red-900/20 rounded-2xl p-8 text-center"><i class="fas fa-times-circle text-4xl text-red-500 mb-3"></i><p class="font-semibold text-red-600">Order Rejected</p></div>`;else{h+=`<div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800"><h3 class="font-semibold mb-6">Order Status</h3><div class="flex items-start relative">`;steps.forEach((s,i)=>{h+=`<div class="status-step ${i<ci?'done':''} ${i===ci?'active':''}"><div class="dot"><i class="fas ${i<ci?icons[i]:i===ci?icons[i]:'fa-circle'} text-[10px]"></i></div>${i<steps.length-1?'<div class="line"></div>':''}<span class="text-[10px] mt-2 font-medium ${i<=ci?'text-brand-600 dark:text-brand-400':'text-surface-400'} text-center">${labels[i]}</span></div>`});h+=`</div></div><div class="bg-white dark:bg-surface-900 rounded-2xl p-5 border border-surface-200 dark:border-surface-800 mt-4"><h3 class="font-semibold mb-3">Items</h3>${o.items.map(i=>`<div class="flex justify-between text-sm py-1.5"><span>${i.name} x${i.qty}kg</span><span class="font-medium">${fmtP(i.price*i.qty)}</span></div>`).join('')}</div>`}if(!rej&&o.orderStatus==='delivered')h+=`<button onclick="reorder('${id}')" class="btn-primary w-full py-3 mt-4"><i class="fas fa-redo mr-2"></i>Reorder</button>`;document.getElementById('trackingContent').innerHTML=h}
+function reorder(id){const o=orders[id];if(!o)return;let added=0;o.items.forEach(item=>{db.ref('users/'+currentUser.uid+'/cart').push({partId:item.partId,qty:item.qty,cutType:item.cutType||''});added++});if(added)toast(`${added} item(s) added to cart`,'success');showPage('cart')}
+
+function toggleWishlist(id){if(wishlist.includes(id)){db.ref('users/'+currentUser.uid+'/wishlist/'+id).remove();toast('Removed from wishlist','info')}else{db.ref('users/'+currentUser.uid+'/wishlist/'+id).set(true);toast('Added to wishlist','success')}}
+function updateWishBadge(){const el=document.getElementById('wishCount');el.textContent=wishlist.length;el.style.display=wishlist.length>0?'flex':'none'}
+function renderWishlist(){const g=document.getElementById('wishlistGrid'),e=document.getElementById('wishlistEmpty'),wp=wishlist.map(id=>[id,parts[id]]).filter(([_,p])=>p);if(!wp.length){g.innerHTML='';e.style.display='block';return}e.style.display='none';g.innerHTML=wp.map(([id,p])=>partCard(id,p,categories[p.categoryId]||{})).join('')}
+</script>
+</body>
+</html>
